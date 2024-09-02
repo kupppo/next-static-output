@@ -5,10 +5,7 @@ export const revalidate = false
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  return [
-    { slug: 'hello' },
-    { slug: 'world' }
-  ]
+  return []
 }
 
 export function GET(_req: NextRequest, { params }: { params: { slug: string } }) {
