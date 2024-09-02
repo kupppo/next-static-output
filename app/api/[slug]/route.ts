@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export const dynamic = 'force-static'
 export const revalidate = false
+export const dynamicParams = true
 
 export async function generateStaticParams() {
   return [
