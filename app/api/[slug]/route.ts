@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from 'next/server'
 export const dynamic = 'force-static'
 export const revalidate = false
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return [
-    { params: { slug: 'hello' } },
-    { params: { slug: 'world' } }
+    { slug: 'hello' },
+    { slug: 'world' }
   ]
 }
 
