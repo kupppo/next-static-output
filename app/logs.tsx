@@ -56,7 +56,7 @@ export default function LogsList() {
               <div className="px-2">{log.timestamp}</div>
               <div className="px-2">{log.method || <Invisible>---</Invisible>}</div>
               <div className="px-2" style={{ color: getStatusColor(log.status) }}>{log.status || <Invisible>---</Invisible>}</div>
-              <div className="px-2 min-w-[80px] text-foreground/60">{cacheName(log.cache)}</div>
+              <div className="px-2 min-w-[100px] text-foreground/60">{cacheName(log.cache)}</div>
               <div className="px-2">{log.url}</div>
             </li>
           ))}
