@@ -18,14 +18,19 @@ export default function LogsList() {
   const [logs, setLogs] = useState<Log[]>([])
 
   useEffect(() => {
-    const listener = (evt: CustomEvent) => {
+    const logListener = (evt: CustomEvent) => {
       const data = evt.detail as Log
       setLogs((logs) => ([data, ...logs]))
     }
-    document.addEventListener('log:request', listener as EventListener)
+    const clearListener = () => {
+      setLogs([])
+    }
+    document.addEventListener('log:request', logListener as EventListener)
+    document.addEventListener('log:clear', clearListener as EventListener)
 
     return () => {
-      document.removeEventListener('log:request', listener as EventListener)
+      document.removeEventListener('log:request', logListener as EventListener)
+      document.removeEventListener('log:clear', clearListener as EventListener)
     }
   }, [logs, setLogs])
   return (

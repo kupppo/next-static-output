@@ -1,4 +1,4 @@
-import Action from './action'
+import { Action, ClearLogs } from './action'
 import { Separator } from '@/components/ui/separator'
 import Realtime from './realtime'
 import Logs from './logs'
@@ -38,6 +38,9 @@ export default async function Home() {
             </li>
           ))}
         </ul>
+        <div className="mt-8">
+          <ClearLogs />
+        </div>
       </section>
       <Logs />
       <Realtime />
