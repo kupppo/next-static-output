@@ -7,6 +7,7 @@ const actions = [
   {
     url: "/api/hello",
     type: "Build",
+    source: "Route Handler",
     caption: (
       <>
         Generated at build time via <code>getStaticParams</code>.
@@ -18,6 +19,7 @@ const actions = [
   {
     url: "/api/hello/interval",
     type: "Build",
+    source: "Route Handler",
     caption: (
       <>
         Generated at build time via <code>getStaticParams</code>.
@@ -29,6 +31,7 @@ const actions = [
   {
     url: "/api/foo",
     type: "ISR",
+    source: "Route Handler",
     caption: (
       <>
         Generated through fallback.
@@ -40,11 +43,36 @@ const actions = [
   {
     url: "/api/foo/interval",
     type: "ISR",
+    source: "Route Handler",
     caption: (
       <>
         Generated through fallback.
         <br />
         Has <code>revalidate</code> set to <code>60</code>.
+      </>
+    )
+  },
+  {
+    url: "/hello",
+    type: "Build",
+    source: "Page",
+    caption: (
+      <>
+        Generated at build time via <code>getStaticParams</code>.
+        <br />
+        Has <code>revalidate</code> set to <code>false</code>.
+      </>
+    )
+  },
+  {
+    url: "/foo",
+    type: "ISR",
+    source: "Page",
+    caption: (
+      <>
+        Generated through fallback.
+        <br />
+        Has <code>revalidate</code> set to <code>false</code>.
       </>
     )
   },
@@ -61,7 +89,10 @@ export default async function Home() {
                 GET {action.url}
               </Action>
               <div className="mt-2 mb-4">
-                <h3 className="uppercase font-normal rounded-xl text-xs font-mono">{action.type}</h3>
+                <h3 className="uppercase font-normal rounded-xl text-xs font-mono">
+                  {action.type}{' '}
+                  <span className="text-foreground/60">&mdash; {action.source}</span>
+                </h3>
                 <p className="mt-4 text-xs text-foreground/60">{action.caption}</p>
               </div>
               {index < actions.length - 1 && <Separator />}
