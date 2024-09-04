@@ -1,6 +1,8 @@
 import Action from './action'
-import { Badge } from '@/components/ui/badge'
+import { PARTYKIT_URL } from '@/app/env'
 import { Separator } from '@/components/ui/separator'
+import { notFound } from 'next/navigation'
+import Realtime from './realtime'
 
 const actions = [
   {
@@ -14,13 +16,13 @@ const actions = [
     type: "Build",
   },
   {
-    value: "hello",
+    value: "foo",
     label: "GET /api/foo",
     type: "ISR",
   },
 ]
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="p-8">
       <section>
@@ -38,6 +40,7 @@ export default function Home() {
           ))}
         </ul>
       </section>
+      <Realtime />
     </main>
   );
 }
