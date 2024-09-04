@@ -1,7 +1,9 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { X as RevalidateIcon } from 'lucide-react'
 import type { Log } from '@/app/types'
+import { forceRevalidate } from './actions/revalidate'
 
 const getCacheHeader = (res: Response) => {
   switch (true) {
@@ -37,8 +39,26 @@ export function Action({ children, url }: { children: React.ReactNode; url: stri
     const evt = new CustomEvent('log:request', { detail })
     document.dispatchEvent(evt)
   }
+
+  const handleRevalidate = async (url: string) => {
+    const absoluteUrl = new URL(url, window.location.origin).toString()
+    const now = new Date().toTimeString()
+    const timestamp = now.split(' ')[0]
+    await forceRevalidate(absoluteUrl)
+    const detail: Log = {
+      url: `${url} was revalidated`,
+      timestamp,
+    }
+    const evt = new CustomEvent('log:request', { detail })
+    document.dispatchEvent(evt)
+  }
   return (
-    <Button onClick={() => handleAction(url)}>{children}</Button>
+    <div className="flex gap-2 justify-between">
+      <Button onClick={() => handleAction(url)}>{children}</Button>
+      <Button variant="ghost" size="sm" onClick={() => handleRevalidate(url)}>
+        <span className="text-xs font-mono underline decoration-dotted underline-offset-2">Revalidate</span>
+      </Button>
+    </div>
   )
 }
 
