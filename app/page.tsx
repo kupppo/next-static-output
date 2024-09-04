@@ -24,8 +24,8 @@ const actions = [
 
 export default async function Home() {
   return (
-    <main className="p-8">
-      <section>
+    <main className="p-8 flex gap-8">
+      <section className="min-w-[300px]">
         <ul>
           {actions.map((action, index) => (
             <li key={action.value} className="block my-2 py-1">
@@ -39,6 +39,11 @@ export default async function Home() {
             </li>
           ))}
         </ul>
+      </section>
+      <section className="mb-8 p-4 w-3/4 max-w-[800px] border rounded-md min-h-90vh">
+        <ol>
+          <li>log 1</li>
+        </ol>
       </section>
       <Realtime />
     </main>

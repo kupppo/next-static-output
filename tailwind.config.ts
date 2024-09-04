@@ -59,7 +59,10 @@ const config: Config = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+			minHeight: {
+        '90vh': '90vh',
+      }
   	}
   },
   plugins: [require("tailwindcss-animate")],
