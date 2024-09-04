@@ -39,9 +39,7 @@ export default async function Home() {
           ))}
         </ul>
       </section>
-      <section className="mb-8 p-4 w-3/4 max-w-[800px] border rounded-md min-h-90vh">
-        <Logs />
-      </section>
+      <Logs />
       <Realtime />
     </main>
   );

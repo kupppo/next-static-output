@@ -60,6 +60,9 @@ const config: Config = {
   				'5': 'hsl(var(--chart-5))'
   			}
   		},
+			height: {
+				'90vh': '90vh',
+			},
 			minHeight: {
         '90vh': '90vh',
       }
