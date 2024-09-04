@@ -7,22 +7,46 @@ const actions = [
   {
     url: "/api/hello",
     type: "Build",
-  },
-  {
-    url: "/api/world",
-    type: "Build",
+    caption: (
+      <>
+        Generated at build time via <code>getStaticParams</code>.
+        <br />
+        Has <code>revalidate</code> set to <code>false</code>.
+      </>
+    )
   },
   {
     url: "/api/hello/interval",
     type: "Build",
-  },
-  {
-    url: "/api/world/interval",
-    type: "Build",
+    caption: (
+      <>
+        Generated at build time via <code>getStaticParams</code>.
+        <br />
+        Has <code>revalidate</code> set to <code>60</code>.
+      </>
+    )
   },
   {
     url: "/api/foo",
     type: "ISR",
+    caption: (
+      <>
+        Generated through fallback.
+        <br />
+        Has <code>revalidate</code> set to <code>false</code>.
+      </>
+    )
+  },
+  {
+    url: "/api/foo/interval",
+    type: "ISR",
+    caption: (
+      <>
+        Generated through fallback.
+        <br />
+        Has <code>revalidate</code> set to <code>60</code>.
+      </>
+    )
   },
 ]
 
@@ -36,8 +60,9 @@ export default async function Home() {
               <Action url={action.url}>
                 GET {action.url}
               </Action>
-              <div className="mt-2 mb-4 uppercase font-normal rounded-xl text-xs font-mono">
-                {action.type}
+              <div className="mt-2 mb-4">
+                <h3 className="uppercase font-normal rounded-xl text-xs font-mono">{action.type}</h3>
+                <p className="mt-4 text-xs text-foreground/60">{action.caption}</p>
               </div>
               {index < actions.length - 1 && <Separator />}
             </li>
