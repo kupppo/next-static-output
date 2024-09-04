@@ -5,10 +5,12 @@ import type { Log } from '@/app/types'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 const getStatusColor = (status: number | undefined) => {
-  if (!status) return '#f13342'
+  if (!status) return '#7d7d7d'
   const statusString = status.toString()
   if (statusString.startsWith('2')) return '#30b37c'
-  if (statusString.startsWith('3')) return '##ffae00'
+  if (statusString.startsWith('3')) return '#47a8ff'
+  if (statusString.startsWith('4')) return '#ffae00'
+  if (statusString.startsWith('5')) return '#ffae00'
   return '#f13342'
 }
 
