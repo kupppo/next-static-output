@@ -1,4 +1,4 @@
-import { PARTYKIT_URL } from '@/app/env'
+import { DEPLOYMENT_ID, PARTYKIT_URL } from '@/app/env'
 
 const checkPartyKit = (error: Error, url: string) => {
   try {
@@ -13,7 +13,7 @@ const checkPartyKit = (error: Error, url: string) => {
 
 export default async function NotifyClient(url: string) {
   try {
-    const roomUrl = new URL('/party/home', PARTYKIT_URL)
+    const roomUrl = new URL(`/party/${DEPLOYMENT_ID}`, PARTYKIT_URL)
     await fetch(roomUrl.toString(), {
       method: 'POST',
       cache: 'no-cache',

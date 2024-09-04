@@ -4,3 +4,4 @@ export const PROTOCOL = PARTYKIT_HOST.startsWith("127.0.0.1") || PARTYKIT_HOST.s
   ? "http"
   : "https"
 export const PARTYKIT_URL = `${PROTOCOL}://${PARTYKIT_HOST}`
+export const DEPLOYMENT_ID = process.env.VERCEL_DEPLOYMENT_ID ?? "default"

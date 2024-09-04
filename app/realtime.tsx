@@ -1,6 +1,6 @@
 'use client'
 
-import { PARTYKIT_HOST } from '@/app/env'
+import { DEPLOYMENT_ID, PARTYKIT_HOST } from '@/app/env'
 import usePartySocket from 'partysocket/react'
 import { toast } from 'sonner'
 import type { Log } from '@/app/types'
@@ -8,7 +8,7 @@ import type { Log } from '@/app/types'
 export default function Realtime() {
   usePartySocket({
     host: PARTYKIT_HOST,
-    room: 'home',
+    room: DEPLOYMENT_ID,
     onMessage(event) {
       const message = `${event.data} was regenerated`
       toast.success(`${message} was regenerated`)
