@@ -66,5 +66,6 @@ const config: Config = {
   	}
   },
   plugins: [require("tailwindcss-animate")],
+	safelist: ['dark']
 };
 export default config;

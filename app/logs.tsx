@@ -29,8 +29,15 @@ export default function LogsList() {
   }, [logs, setLogs])
   return (
     <ol>
-      {logs.map((log, i) => (
-        <li className="flex font-mono text-xs even:bg-neutral-100 px-2 py-3" key={i}>
+      {logs.length === 0 ? (
+        <div className="font-mono text-xs text-foreground/60 relative">
+          Awaiting logs{' '}
+          <span className="motion-safe:animate-pulse" style={{ animationDelay: '0s' }}>.</span>
+          <span className="motion-safe:animate-pulse" style={{ animationDelay: '0.2s' }}>.</span>
+          <span className="motion-safe:animate-pulse" style={{ animationDelay: '0.4s' }}>.</span>
+        </div>
+      ) : logs.map((log, i) => (
+        <li className="flex font-mono text-xs even:bg-neutral-100 dark:even:bg-neutral-900 px-2 py-3" key={i}>
           <div className="px-2">{log.timestamp}</div>
           <div className="px-2">{log.method || <Invisible>---</Invisible>}</div>
           <div className="px-2" style={{ color: getStatusColor(log.status) }}>{log.status || <Invisible>---</Invisible>}</div>
