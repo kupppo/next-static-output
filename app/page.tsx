@@ -1,8 +1,7 @@
 import Action from './action'
-import { PARTYKIT_URL } from '@/app/env'
 import { Separator } from '@/components/ui/separator'
-import { notFound } from 'next/navigation'
 import Realtime from './realtime'
+import Logs from './logs'
 
 const actions = [
   {
@@ -41,9 +40,7 @@ export default async function Home() {
         </ul>
       </section>
       <section className="mb-8 p-4 w-3/4 max-w-[800px] border rounded-md min-h-90vh">
-        <ol>
-          <li>log 1</li>
-        </ol>
+        <Logs />
       </section>
       <Realtime />
     </main>

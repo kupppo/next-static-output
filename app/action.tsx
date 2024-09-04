@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import type { Log } from '@/app/types'
 
 export default function Action({ children, value }: { children: React.ReactNode; value: string }) {
   const handleAction = async (action: string) => {
@@ -10,14 +11,13 @@ export default function Action({ children, value }: { children: React.ReactNode;
     const res = await fetch(url, {
       cache: 'no-cache',
     })
-    const evt = new CustomEvent('log:request', {
-      detail: {
-        status: res.status,
-        method: 'GET',
-        url,
-        timestamp,
-      }
-    })
+    const detail: Log = {
+      status: res.status,
+      method: 'GET',
+      url,
+      timestamp,
+    }
+    const evt = new CustomEvent('log:request', { detail })
     document.dispatchEvent(evt)
   }
   return (

@@ -13,8 +13,8 @@ const checkPartyKit = (error: Error, url: string) => {
 
 export default async function NotifyClient(url: string) {
   try {
-    const roomUrl = `${PARTYKIT_URL}/party/home`
-    await fetch(roomUrl, {
+    const roomUrl = new URL('/party/home', PARTYKIT_URL)
+    await fetch(roomUrl.toString(), {
       method: 'POST',
       cache: 'no-cache',
       headers: {
@@ -26,6 +26,7 @@ export default async function NotifyClient(url: string) {
     })
   } catch (err: unknown) {
     const error = err as Error
+    console.error(error)
     checkPartyKit(error, url)
   }
 }
