@@ -5,18 +5,23 @@ import Logs from './logs'
 
 const actions = [
   {
-    value: "hello",
-    label: "GET /api/hello",
+    url: "/api/hello",
     type: "Build",
   },
   {
-    value: "world",
-    label: "GET /api/world",
+    url: "/api/world",
     type: "Build",
   },
   {
-    value: "foo",
-    label: "GET /api/foo",
+    url: "/api/hello/interval",
+    type: "Build",
+  },
+  {
+    url: "/api/world/interval",
+    type: "Build",
+  },
+  {
+    url: "/api/foo",
     type: "ISR",
   },
 ]
@@ -27,9 +32,9 @@ export default async function Home() {
       <section className="min-w-[300px]">
         <ul>
           {actions.map((action, index) => (
-            <li key={action.value} className="block my-2 py-1">
-              <Action value={action.value}>
-                {action.label}
+            <li key={index} className="block my-2 py-1">
+              <Action url={action.url}>
+                GET {action.url}
               </Action>
               <div className="mt-2 mb-4 uppercase font-normal rounded-xl text-xs font-mono">
                 {action.type}

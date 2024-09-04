@@ -19,11 +19,10 @@ const getCacheHeader = (res: Response) => {
   }
 }
 
-export function Action({ children, value }: { children: React.ReactNode; value: string }) {
-  const handleAction = async (action: string) => {
+export function Action({ children, url }: { children: React.ReactNode; url: string }) {
+  const handleAction = async (url: string) => {
     const now = new Date().toTimeString()
     const timestamp = now.split(' ')[0]
-    const url = `/api/${action}`
     const res = await fetch(url, {
       cache: 'no-cache',
     })
@@ -39,7 +38,7 @@ export function Action({ children, value }: { children: React.ReactNode; value: 
     document.dispatchEvent(evt)
   }
   return (
-    <Button onClick={() => handleAction(value)}>{children}</Button>
+    <Button onClick={() => handleAction(url)}>{children}</Button>
   )
 }
 
